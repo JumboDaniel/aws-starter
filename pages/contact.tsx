@@ -9,6 +9,7 @@ const Contact = () => {
     name: "",
     type: "",
   });
+
   //////////////////////////////////////////////////
   const handleGoBack = () => {
     router.back();
@@ -29,7 +30,7 @@ const Contact = () => {
       });
       //check if the response is successful
       if (response.ok) {
-        console.log(response);
+        const {formData} = await response.json();
         setMessage({ name: "success", type: "success" });
         // console.log("Form submitted successfully!");
       } else {
