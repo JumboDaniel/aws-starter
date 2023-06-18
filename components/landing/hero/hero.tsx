@@ -63,8 +63,12 @@ const Hero = () => {
                 </Link>
               ))}
               <div className="w-px h-5 bg-black/20"></div>
-              {button.map(([link, styling], index) => {
-                return <button className={styling}>{link}</button>;
+              {button.map(([name, link, styling], index) => {
+                return (
+                  <Link href={link} key={index}>
+                    <button className={styling}>{name}</button>{" "}
+                  </Link>
+                );
               })}
             </div>
           </div>
