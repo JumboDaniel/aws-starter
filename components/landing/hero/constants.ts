@@ -1,4 +1,4 @@
-export const links = ["Resources", "Solutions", "features", "pricing"];
+export const links = [ "features", "pricing","faq"];
 export const button = [
   [
     "Log in",

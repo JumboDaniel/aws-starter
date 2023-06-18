@@ -55,7 +55,7 @@ const Hero = () => {
             <div className="hidden ml-auto lg:flex lg:items-center lg:justify-center lg:space-x-10">
               {links.map((singleLink, index) => (
                 <Link
-                  className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80"
+                  className="text-base font-semibold text-black transition-all duration-200 hover:text-opacity-80 capitalize"
                   href={`#${singleLink}`}
                   key={index}
                 >
