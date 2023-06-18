@@ -1,9 +1,55 @@
-import React from "react";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/router";
+import React, { useRef, useState } from "react";
 
 const Contact = () => {
+  const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [message, setMessage] = useState({
+    name: "",
+    type: "",
+  });
+  //////////////////////////////////////////////////
+  const handleGoBack = () => {
+    router.back();
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    // Creating an object with form values
+    const formData = Object.fromEntries(new FormData(formRef.current));
+    try {
+      const response = await fetch("/api/formsubmit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
+        },
+        body: JSON.stringify(formData),
+      });
+      //check if the response is successful
+      if (response.ok) {
+        console.log(response);
+        setMessage({ name: "success", type: "success" });
+        // console.log("Form submitted successfully!");
+      } else {
+        setMessage({ name: response.statusText, type: "error" });
+      }
+    } catch (error: any) {
+      setMessage({ name: error.message, type: "error" });
+      console.error("Error:", error);
+    }
+  };
   return (
     <section className="min-h-screen py-10 bg-gray-900 sm:py-16 lg:py-24">
       <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
+        <div
+          className="flex text-white gap-2 font-medium text-lg cursor-pointer"
+          onClick={handleGoBack}
+        >
+          <ArrowLeft />
+          <p>Go Back</p>
+        </div>
         <div className="grid grid-cols-1 md:items-stretch md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10">
           <div className="flex flex-col justify-between lg:py-5">
             <div>
@@ -102,7 +148,7 @@ const Contact = () => {
                   Amet minim mollit non deserunt ullamco est sit aliqua dolor do
                   amet sint.
                 </p>
-                <form action="#" method="POST" className="mt-4">
+                <form className="mt-4" ref={formRef} onSubmit={handleSubmit}>
                   <div className="space-y-6">
                     <div>
                       <label
@@ -115,8 +161,9 @@ const Contact = () => {
                       <div className="mt-2.5 relative">
                         <input
                           type="text"
-                          name=""
+                          name="name"
                           id=""
+                          required
                           placeholder="Enter your full name"
                           className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 caret-orange-500"
                         />
@@ -133,8 +180,9 @@ const Contact = () => {
                       <div className="mt-2.5 relative">
                         <input
                           type="text"
-                          name=""
+                          name="email"
                           id=""
+                          required
                           placeholder="Enter your full name"
                           className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 caret-orange-500"
                         />
@@ -142,7 +190,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <label
-                        htmlFor=""
+                        htmlFor="brief"
                         className="text-base font-medium text-gray-900"
                       >
                         {" "}
@@ -150,8 +198,9 @@ const Contact = () => {
                       </label>
                       <div className="mt-2.5 relative">
                         <textarea
-                          name=""
+                          name="brief"
                           id=""
+                          required
                           placeholder="Enter your project brief"
                           className="block w-full px-4 py-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md resize-y focus:outline-none focus:ring-orange-500 focus:border-orange-500 caret-orange-500"
                           rows={4}
