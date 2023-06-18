@@ -11,7 +11,7 @@ const Hero = () => {
               <a href="#" title="" className="flex">
                 <img
                   className="w-auto h-8"
-                  src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/2/logo.svg"
+                  src="https://caladiumconsulting.com/assets/img/Logo.png"
                   alt=""
                 />
               </a>
@@ -80,19 +80,18 @@ const Hero = () => {
           <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <h1 className="text-4xl font-bold text-black sm:text-6xl lg:text-7xl">
-                Collaborate remotely, with
+                Welcome to Caladium
                 <div className="relative inline-flex">
                   <span className="absolute inset-x-0 bottom-0 border-b-[30px] border-[#4ADE80]"></span>
                   <h1 className="relative text-4xl font-bold text-black sm:text-6xl lg:text-7xl">
-                    Postcrafts.
+                    Consulting.
                   </h1>
                 </div>
               </h1>
 
               <p className="mt-8 text-base text-black sm:text-xl">
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.
-                Exercitation veniam consequat.
+                Schedule a free session with an advisor to discuss your Startup,
+                SME or Large Enterprise.
               </p>
 
               <div className="mt-10 sm:flex sm:items-center sm:space-x-8">
@@ -103,7 +102,7 @@ const Hero = () => {
                   role="button"
                 >
                   {" "}
-                  Start exploring{" "}
+                 Get a Quote{" "}
                 </a>
 
                 <a
